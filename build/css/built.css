@@ -1,0 +1,15 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: aquamarine;
+}
+
+.wtc {
+    width: 500px;
+    height: 500px;
+    background-image: url(8700b247df.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
