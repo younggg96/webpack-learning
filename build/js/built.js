@@ -10,6 +10,16 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/index.js":
+/*!*************************!*\
+  !*** ./src/js/index.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/index.css */ \"./src/css/index.css\");\n/* harmony import */ var _data_data_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/data.json */ \"./src/data/data.json\");\n/*\n    index.js entry\n    command\n        webpack ./src/js/index.js -o ./build/built.js --mode=development\n        webpack ./src/js/index.js -o ./build/built.js --mode=production\n*/\n\n // eslint-disable-next-line import/no-extraneous-dependencies\n// 使用@babel.polyfill，对全部js进行兼容性处理；\n// import '@babel/polyfill';\n// eslint-disable-next-line no-console\n\nconsole.log(_data_data_json__WEBPACK_IMPORTED_MODULE_1__);\n\nvar bbb = function bbb(x, y) {\n  return x + y;\n};\n\nfunction add(x, y) {\n  return x + y;\n} // eslint-disable-next-line no-console\n\n\nconsole.log(add(1, 2)); // eslint-disable-next-line no-console\n\nconsole.log(bbb(3, 7));\n\n//# sourceURL=webpack://test/./src/js/index.js?");
+
+/***/ }),
+
 /***/ "./src/css/index.css":
 /*!***************************!*\
   !*** ./src/css/index.css ***!
@@ -27,16 +37,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /***/ ((module) => {
 
 eval("module.exports = JSON.parse('{\"name\":\"jack\",\"age\":\"18\"}');\n\n//# sourceURL=webpack://test/./src/data/data.json?");
-
-/***/ }),
-
-/***/ "./src/js/index.js":
-/*!*************************!*\
-  !*** ./src/js/index.js ***!
-  \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/index.css */ \"./src/css/index.css\");\n/* harmony import */ var _data_data_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/data.json */ \"./src/data/data.json\");\n/* \r\n    index.js entry\r\n    command \r\n        webpack ./src/js/index.js -o ./build/built.js --mode=development\r\n        webpack ./src/js/index.js -o ./build/built.js --mode=production\r\n*/\r\n\r\n\r\nconsole.log(_data_data_json__WEBPACK_IMPORTED_MODULE_1__);\r\n\r\nfunction add(x, y) {\r\n  return x + y;\r\n}\r\n\r\nconsole.log(add(1, 2));\r\n\n\n//# sourceURL=webpack://test/./src/js/index.js?");
 
 /***/ })
 
