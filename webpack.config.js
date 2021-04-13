@@ -1,15 +1,21 @@
 /* 
-webpack的配置文件
-运行webpack指令是会加载里面的配置 所有构建工具都是基于nodejs平台运行的
+  webpack的配置文件
+  运行webpack指令是会加载里面的配置 所有构建工具都是基于nodejs平台运行的
+
+  webpack 会将打包结果输出
+  npx webpack-dev-server 只会在内存中编译打包，没有输出
 */
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin")
+
+// process.env.NODE_ENV = 'production';
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/js/index.js",
   output: {
-    filename: "built.js",
+    filename: "js/built.js",
     path: resolve(__dirname, "build"),
   },
   module: {
@@ -26,37 +32,68 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           // 将css文件变成commonjs模块加载js中，里面内容是样式字符串
           "css-loader",
+          /*
+            css兼容性处理： postcss --> postcss-loader postcss-preset-env
+            帮postcss 找到package.json 里面的配置，通过配置加载指定的css兼容性样式
+            "browserlists": {
+              // 开发环境 设置node环境变量： process.env.NODE_ENV = 'development'
+              "development": [
+                "last 1 chrome version",
+                "last 1 firefox version",
+                "last 1 safer version"
+              ],
+              // 生产环境 默认是看生产环境
+              "production": [
+                ">0.2%",
+                "not dead",
+                "not op_mini all"
+              ]
+            }
+          */
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                ident: "postcss",
+                plugins: [
+                  require("postcss-preset-env")()
+                ]
+              },
+            },
+          },
         ],
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        use: ["style-loader", "css-loader", "less-loader"],
       },
       {
         test: /\.(jpg|png|gif)$/,
         // 使用一个用loader:
         // 下载两个 url-loader file-loader
-        loader: 'url-loader',
+        loader: "url-loader",
         options: {
           limit: 8 * 1024,
-          name: '[hash:10].[ext]',
+          name: "[hash:10].[ext]",
           // 关闭es6模块化
           exModules: false,
-        }
+          publicPath: "imgs",
+        },
       },
       {
         test: /\.html$/,
         // 处理html文件的img图片（负责引入img，从而能被url-loader进行处理）
-        loader: 'html-loader',
+        loader: "html-loader",
       },
       {
         // 打包其他资源（除了html/js/css以外的资源)
         exclude: /\.(html|js|css|less|jpg|png|gif)/,
-        loader: 'file-loader',
+        loader: "file-loader",
         options: {
-          name: '[hash:10].[ext]',
-        }
-      }
+          name: "[hash:10].[ext]",
+          publicPath: "media",
+        },
+      },
     ],
   },
   plugins: [
@@ -68,12 +105,13 @@ module.exports = {
     */
     new HtmlWebpackPlugin({
       // 复制 './src/index.html' 文件,并自动引入打包输出所有的资源
-      template: './src/index.html'
+      template: "./src/index.html",
     }),
     new MiniCssExtractPlugin({
       // 对输出的css文件进行重命名
-      filename: 'css/built.css'
-    })
+      filename: "css/built.css",
+    }),
+    new OptimizeCssAssetsWebpackPlugin()
   ],
 
   mode: "development",
@@ -83,12 +121,12 @@ module.exports = {
   // 安装 npm i webpack-dev-server -D
   devServer: {
     // 项目构建后路径
-    contentBase: resolve(__dirname, 'build'),
+    contentBase: resolve(__dirname, "build"),
     // 启动gzip压缩
     compress: true,
     // 端口号
     port: 3000,
     // 自动打开浏览器
-    open: true
-  }
+    open: true,
+  },
 };

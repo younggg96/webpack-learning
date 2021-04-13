@@ -9,7 +9,9 @@ html, body {
 .wtc {
     width: 500px;
     height: 500px;
-    background-image: url('./wtc.jpg');
+    background-image: url('../img/wtc.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    display: flex;
+    backface-visibility: hidden;
 }
